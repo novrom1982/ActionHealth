@@ -18,15 +18,17 @@ public class MythicMobsSupport {
             if (isMythicMob == null || !isMythicMob) {
                 return null;
             }
+
             Object mythicMobInstance = apiHelper.getClass().getMethod("getMythicMobInstance", Entity.class).invoke(apiHelper, entity);
             if (mythicMobInstance == null) {
                 return null;
             }
 
             Object type = mythicMobInstance.getClass().getMethod("getType").invoke(mythicMobInstance);
-            if (type == null) {        
+            if (type == null) {
                 return null;
-            }            
+            }
+
             Object internalName = type.getClass().getMethod("getInternalName").invoke(type);
             return internalName instanceof String ? (String) internalName : null;
         } catch (Exception ignored) {
