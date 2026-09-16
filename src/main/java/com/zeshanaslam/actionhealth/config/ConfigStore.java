@@ -36,6 +36,7 @@ public class ConfigStore {
     public List<String> worlds = new ArrayList<>();
     public HashMap<String, String> translate = new HashMap<>();
     public List<String> regions = new ArrayList<>();
+    public String mcRemappedPackage;
     public String mcVersion;
     public boolean useOldMethods;
     public boolean showOnLook;
@@ -116,7 +117,7 @@ public class ConfigStore {
         mcRemappedPackage = lastSegment.startsWith("v1_") ? lastSegment : "";
         mcVersion = resolveMinecraftVersion();
 
-        useOldMethods = mcVersion.equalsIgnoreCase("v1_8_R1") || mcVersion.equalsIgnoreCase("v1_7_");
+        useOldMethods = mcRemappedPackage.equalsIgnoreCase("v1_8_R1") || mcRemappedPackage.equalsIgnoreCase("v1_7_");
 
         if (plugin.getConfig().contains("Remember Toggle")) {
             rememberToggle = plugin.getConfig().getBoolean("Remember Toggle");
