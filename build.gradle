@@ -30,6 +30,7 @@ repositories {
         url = 'https://repo.helpch.at/releases/'
         content {
             includeGroup 'me.clip'
+        }
     }
 }
 
