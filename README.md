@@ -5,10 +5,8 @@ Spigot page: [Click Here](https://www.spigotmc.org/resources/action-bar-health.2
 
 # Dependencies
 **Required**
-- Version v3.5.7 or greater
-  - Java 16 or greater
-- Versions below v3.5.7
-  - Java 8 or greater
+- Version v3.7.1 or greater
+  - Java 25 or greater
 
 **Optional**
 - For region disable option:
@@ -27,12 +25,12 @@ ActionHealth is a very configurable plugin. You can almost change every aspect i
 Default config: [Click Here](https://github.com/zeshan321/ActionHealth/blob/master/config.yml)
 
 # Translations
-[LanguageUtils](https://www.spigotmc.org/resources/1-7-x-1-12-language-utils.8859/) is supported to get the localized name of an entity but if you prefer using your own custom translations, you can use the built in system.
+[LanguageUtils](https://www.spigotmc.org/resources/language-utils-reborn.82280/) is supported to get the localized name of an entity but if you prefer using your own custom translations, you can use the built in system.
 
 A list of the community made translations: [Click Here](https://github.com/zeshan321/ActionHealth/wiki/Community-Translations)
 
 # Compiling
-To compile ActionHealth, you need at least **Java 16** and an internet connection. Then, clone this repo, run `./gradlew clean shadowJar` and get your jar from `build/libs/ActionHealh-VERSION-all.jar`.
+To compile ActionHealth, you need at least **Java 25** and an internet connection. Then, clone this repo, run `./gradlew clean shadowJar` and get your jar from `build/libs/ActionHealh-VERSION-all.jar`.
 
 # More info
 Custom styles, screenshots, command information and more can be found on the spigot page.
