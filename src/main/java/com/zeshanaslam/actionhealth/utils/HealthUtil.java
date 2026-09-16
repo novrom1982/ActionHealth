@@ -268,14 +268,14 @@ public class HealthUtil {
         message = ChatColor.translateAlternateColorCodes('&', message);
 
         try {
-            if (plugin.configStore.mcVersion.contains("v1_17") || plugin.configStore.mcVersion.contains("v1_18") || plugin.configStore.mcVersion.contains("v1_19") || plugin.configStore.mcVersion.contains("v1_20")) {
+            if (plugin.configStore.usesActionBarApi()) {
                 new NewAction(player, message);
             } else if (plugin.configStore.mcVersion.contains("v1_16")) {
                 new PreAction(player, message);
             } else if (plugin.configStore.mcVersion.equals("v1_12_R1") || plugin.configStore.mcVersion.startsWith("v1_13") || plugin.configStore.mcVersion.startsWith("v1_14_") || plugin.configStore.mcVersion.startsWith("v1_15_")) {
                 new LegacyPreAction(player, message);
             } else if (!(plugin.configStore.mcVersion.equalsIgnoreCase("v1_8_R1") || plugin.configStore.mcVersion.contains("v1_7_"))) {
-                Class<?> c1 = Class.forName("org.bukkit.craftbukkit." + plugin.configStore.mcVersion + ".entity.CraftPlayer");
+                Class<?> c1 = Class.forName(plugin.configStore.craftBukkitClass("entity.CraftPlayer"));
                 Object p = c1.cast(player);
                 Object ppoc;
                 Class<?> c4 = Class.forName("net.minecraft.server." + plugin.configStore.mcVersion + ".PacketPlayOutChat");
@@ -295,7 +295,7 @@ public class HealthUtil {
                 Method sendPacket = playerConnection.getClass().getDeclaredMethod("sendPacket", c5);
                 sendPacket.invoke(playerConnection, ppoc);
             } else {
-                Class<?> c1 = Class.forName("org.bukkit.craftbukkit." + plugin.configStore.mcVersion + ".entity.CraftPlayer");
+                Class<?> c1 = Class.forName(plugin.configStore.craftBukkitClass("entity.CraftPlayer"));
                 Object p = c1.cast(player);
                 Object ppoc;
                 Class<?> c4 = Class.forName("net.minecraft.server." + plugin.configStore.mcVersion + ".PacketPlayOutChat");
