@@ -22,7 +22,7 @@ Spigot page: [Click Here](https://www.spigotmc.org/resources/action-bar-health.2
 # Config
 ActionHealth is a very configurable plugin. You can almost change every aspect in the config, including style.
 
-Default config: [Click Here](https://github.com/zeshan321/ActionHealth/blob/master/config.yml)
+Default config: [Click Here](https://github.com/novrom1982/ActionHealth/blob/master/src/main/resources/config.yml)
 
 # Translations
 [LanguageUtils](https://www.spigotmc.org/resources/language-utils-reborn.82280/) is supported to get the localized name of an entity but if you prefer using your own custom translations, you can use the built in system.
