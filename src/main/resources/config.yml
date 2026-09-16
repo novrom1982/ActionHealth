@@ -25,11 +25,11 @@ Toggle Message: ''
 
 # Message sent to player when player enables actionhealth
 # {name} shows the name of the player.
-On Enable: '&7ActionHealth has been &cenabled&7.'
+On Enable: '&7ActionHealth был &aВключен&7.'
 
 # Message sent to player when player disables actionhealth
 # {name} shows the name of the player.
-On Disable: '&7ActionHealth has been &cdisabled&7.'
+On Disable: '&7ActionHealth был &cВыключен&7.'
 
 # Strip Name.
 Strip Name: true
@@ -89,7 +89,7 @@ Whitelist: []
 
 # Show the health of the entity that the player is looking at.
 Show On Look: true
-Look Distance: 10
+Look Distance: 5
 
 LookValues:
   # How often (in ticks) to check if player is looking at an entity. Increase if lagging, maybe to 10 or 20.
@@ -119,16 +119,117 @@ ShowArmorStand: true
 #
 # I'd appreciate if servers that use custom translations share them with me, so I can share them with others!
 # For users that do, I will tag them on Spigot and display their server IP.
-Name Change: false
+Name Change: true
 Name:
-  - Snow Golem = New name
+  - Allay = Тихоня
+  - Armadillo = Броненосец
+  - Armorer = Бронник
+  - Axolotl = Аксолотль
+  - Bat = Летучая мышь
+  - Bee = Пчела
+  - Blaze = Всполох
+  - Bogged = Болотник
+  - Breeze = Вихрь
+  - Butcher = Мясник
+  - Cat = Кошка
+  - Camel = Верблюд
+  - Camel Husk = Верблюд-кадавр
+  - Cartographer = Картограф
+  - Cave Spider = Ядовитый паук
+  - Chicken = Курица
+  - Cleric = Священник
+  - Cod = Треска
+  - Copper Golem = Медный голем
+  - Cow = Корова
+  - Creaking = Скрипун
+  - Creeper = Крипер
+  - Dolphin = Дельфин
+  - Donkey = Осёл
+  - Drowned = Утопленник
+  - Farmer = Фермер
+  - Fisherman = Рыбак
+  - Fletcher = Лучник
+  - Fox = Лиса
+  - Frog = Лягушка
+  - Elder Guardian = Древний страж
+  - Ender Dragon = Дракон Края
+  - Enderman = Эндермен
+  - Endermite = Эндермит
+  - Evoker = Заклинатель
+  - Ghast = Гаст
+  - Giant = Гигант
+  - Glow Squid = Светящийся Спрут
+  - Goat = Коза
+  - Guardian = Страж
+  - Happy Ghast = Счастливый гаст
+  - Horse = Лошадь
+  - Hoglin = Хоглин
+  - Husk = Кадавр
+  - Iron Golem = Железный голем
+  - Leatherworker = Кожевник
+  - Librarian = Библиотекарь
+  - Llama = Лама
+  - Magma Cube = Магмовый куб
+  - Mason = Каменщик
+  - Mooshroom = Муушрум
+  - Nautilus = Наутилус
+  - Nitwit = Нищий
+  - Ocelot = Оцелот
+  - Mule = Мул
+  - Panda = Панда
+  - Parched = Пустынник
+  - Parrot = Попугай
+  - Phantom = Фантом
+  - Pig = Свинья
+  - Piglin = Пиглин
+  - Pillager = Разбойник
+  - Polar Bear = Белый медведь
+  - Pufferfish = Иглобрюх
+  - Rabbit = Кролик
+  - Ravager = Разоритель
+  - Salmon = Лосось
+  - Sheep = Овца
+  - Shepherd = Пастух
+  - Shulker = Шалкер
+  - Silverfish = Чешуйница
+  - Skeleton = Скелет
+  - Skeleton Horse = Лошадь скелет
+  - Slime = Слизень
+  - Sniffer = Нюхач
+  - Snow Golem = Снежный голем
+  - Spider = Паук
+  - Squid = Спрут
+  - Stray = Зимогор
+  - Strider = Страйдер
+  - Sulfur Cub = Серный куб
+  - Tadpole = Головастик
+  - Toolsmith = Инструментальщик
+  - Trader Llama = Лама Торговца
+  - Tropical Fish = Тропическая Рыба
+  - Turtle = Черепаха
+  - Vex = Вредина
+  - Villager = Житель
+  - Vindicator = Поборник
+  - Wandering Trader = Странствующий Торговец
+  - Warden = Хранитель
+  - Weaponsmith = Оружейник
+  - Witch = Ведьма
+  - Wither = Иссушитель
+  - Wither Skeleton = Скелет Иссушитель
+  - Wolf = Волк
+  - Zombie = Зомби
+  - Zombie Horse = Зомби лошадь
+  - Zombie Nautilus = Наутилус-зомби
+  - Zombie Villager = Зомби житель
+  - Zombified Piglin = Зомбифицированный Пиглин
+  - Zoglin = Зоглин
 
 # Translate names using Client Language. Need to install LanguageUtils
 # https://www.spigotmc.org/resources/1-7-x-1-12-language-utils.8859/
 Use Client Language: false
 
 # Allows bstats metrics. Useful to allow better understanding of version support and more metrics useful for maintaining
-Allow Metrics: true
+Allow Metrics: false
 
 # If enabled, when a player gets into combat they will be tagged for the configurable amount of time.
 # When the enemy triggers an action the provided message will be sent.
