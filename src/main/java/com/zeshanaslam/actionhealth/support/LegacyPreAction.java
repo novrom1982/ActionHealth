@@ -7,7 +7,12 @@ import java.lang.reflect.InvocationTargetException;
 
 public class LegacyPreAction {
 
-    private final String packageVersion = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
+    private final String packageVersion = nmsPackageRevision();
+
+    private static String nmsPackageRevision() {
+        String[] parts = Bukkit.getServer().getClass().getPackage().getName().split("\\.");
+        return parts.length > 3 ? parts[3] : "";
+    }
 
     public LegacyPreAction(Player player, String message) throws ClassNotFoundException {
         try {
