@@ -6,6 +6,7 @@ plugins {
 group = 'com.zeshanaslam'
 version = '3.7.1'
 
+
 repositories {
     mavenCentral()
     maven {
