@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -109,9 +110,11 @@ public class ConfigStore {
 
         worlds = plugin.getConfig().getStringList("Disabled worlds");
 
-        // Check if using protocol build
-        mcVersion = Bukkit.getServer().getClass().getPackage().getName();
-        mcVersion = mcVersion.substring(mcVersion.lastIndexOf(".") + 1);
+        // CraftBukkit revision (v1_16_R3, …). Empty on Paper 1.20.5+ where the package is unversioned.
+        String craftPackage = Bukkit.getServer().getClass().getPackage().getName();
+        String lastSegment = craftPackage.substring(craftPackage.lastIndexOf('.') + 1);
+        mcRemappedPackage = lastSegment.startsWith("v1_") ? lastSegment : "";
+        mcVersion = resolveMinecraftVersion();
 
         useOldMethods = mcVersion.equalsIgnoreCase("v1_8_R1") || mcVersion.equalsIgnoreCase("v1_7_");
 
@@ -226,5 +229,48 @@ public class ConfigStore {
 
     public boolean isUsingWhiteList() {
         return !whitelist.isEmpty();
+    }
+
+    public boolean usesActionBarApi() {
+        if (mcRemappedPackage == null || mcRemappedPackage.isEmpty() || !mcRemappedPackage.startsWith("v1_")) {
+            return true;
+        }
+        return isMinecraftAtLeast(1, 17);
+    }
+
+    public boolean isMinecraftAtLeast(int major, int minor) {
+        String[] parts = mcVersion.split("[.\\-_]");
+        try {
+            int parsedMajor = Integer.parseInt(parts[0].replaceAll("[^0-9]", ""));
+            int parsedMinor = parts.length > 1 ? Integer.parseInt(parts[1].replaceAll("[^0-9].*", "")) : 0;
+            if (parsedMajor != major) {
+                return parsedMajor > major;
+            }
+            return parsedMinor >= minor;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public String craftBukkitClass(String relativeName) {
+        if (mcRemappedPackage == null || mcRemappedPackage.isEmpty() || !mcRemappedPackage.startsWith("v1_")) {
+            return "org.bukkit.craftbukkit." + relativeName;
+        }
+        return "org.bukkit.craftbukkit." + mcRemappedPackage + "." + relativeName;
+    }
+
+    private static String resolveMinecraftVersion() {
+        try {
+            Method method = Bukkit.getServer().getClass().getMethod("getMinecraftVersion");
+            Object value = method.invoke(Bukkit.getServer());
+            if (value instanceof String && !((String) value).isEmpty()) {
+                return (String) value;
+            }
+        } catch (Exception ignored) {
+        }
+
+        String bukkitVersion = Bukkit.getBukkitVersion();
+        int dash = bukkitVersion.indexOf('-');
+        return dash > 0 ? bukkitVersion.substring(0, dash) : bukkitVersion;
     }
 }
