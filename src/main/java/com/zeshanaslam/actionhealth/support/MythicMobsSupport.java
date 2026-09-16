@@ -1,22 +1,36 @@
 package com.zeshanaslam.actionhealth.support;
 
-import io.lumine.mythic.bukkit.BukkitAPIHelper;
-import io.lumine.mythic.bukkit.MythicBukkit;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
+import org.bukkit.plugin.Plugin;
 
 public class MythicMobsSupport {
-    private static final MythicBukkit plugin = (MythicBukkit) Bukkit.getServer().getPluginManager().getPlugin("MythicMobs");
 
     public String getMythicName(Entity entity) {
+        Plugin plugin = Bukkit.getPluginManager().getPlugin("MythicMobs");
         if (plugin == null) {
             return null;
         }
 
-        BukkitAPIHelper bucketApiHelper = plugin.getAPIHelper();
-        if (bucketApiHelper.isMythicMob(entity)) {
-            return bucketApiHelper.getMythicMobInstance(entity).getType().getInternalName();
+        try {
+            Object apiHelper = plugin.getClass().getMethod("getAPIHelper").invoke(plugin);
+            Boolean isMythicMob = (Boolean) apiHelper.getClass().getMethod("isMythicMob", Entity.class).invoke(apiHelper, entity);
+            if (isMythicMob == null || !isMythicMob) {
+                return null;
+            }
+            Object mythicMobInstance = apiHelper.getClass().getMethod("getMythicMobInstance", Entity.class).invoke(apiHelper, entity);
+            if (mythicMobInstance == null) {
+                return null;
+            }
+
+            Object type = mythicMobInstance.getClass().getMethod("getType").invoke(mythicMobInstance);
+            if (type == null) {        
+                return null;
+            }            
+            Object internalName = type.getClass().getMethod("getInternalName").invoke(type);
+            return internalName instanceof String ? (String) internalName : null;
+        } catch (Exception ignored) {
+            return null;
         }
-        return null;
     }
 }
