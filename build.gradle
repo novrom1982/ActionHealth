@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.zeshanaslam'
-version = '3.5.9'
+version = '3.7.1'
 
 repositories {
     mavenCentral()
@@ -25,26 +25,22 @@ repositories {
         url = 'https://raw.github.com/MascusJeoraly/LanguageUtils/mvn-repo/'
     }
     maven {
-        name = 'Lumine Releases'
-        url = 'https://mvn.lumine.io/repository/maven-public/'
-    }
-    maven {
         name = 'papi-repo'
-        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
-    }
-    maven {
-        name = 'IntellectualSites'
-        url = 'https://mvn.intellectualsites.com/content/repositories/releases/'
+        url = 'https://repo.helpch.at/releases/'
+        content {
+            includeGroup 'me.clip'
     }
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18-R0.1-SNAPSHOT'
-    compileOnly 'me.clip:placeholderapi:2.10.10'
+    compileOnly 'me.clip:placeholderapi:2.12.3'
+    compileOnly('com.intellectualsites.mvdwplaceholderapi:MVdWPlaceholderAPI:3.1.1') {
+        exclude group: 'org.spigotmc'
+        exclude group: 'org.bukkit'
+    }
     compileOnly 'org.apache.commons:commons-lang3:3.12.0'
     compileOnly 'com.meowj:LangUtils:1.9'
-    compileOnly files('temp_libs/MVdWPlaceholderAPI.jar')
-    compileOnly files('temp_libs/MythicMobs-5.0.2.jar')
     implementation 'org.codemc.worldguardwrapper:worldguardwrapper:1.2.0-SNAPSHOT'
 }
 
